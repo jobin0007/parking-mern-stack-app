@@ -521,33 +521,32 @@ const parkingSpotControllers = {
     }
   }),
 
-  getAvailableParkingSpots: asyncHandler(async (req, res) => {
+getAvailableParkingSpots : asyncHandler(async (req, res) => {
     try {
       const { location, vehicleType } = req.query;
-
+  
       let query = { isAvailable: true };
-
+  
       if (location) {
-        query["location.address"] = location;
+        query["location.city"] = { $regex: location, $options: "i" }; // Case-insensitive partial match
       }
       if (vehicleType) {
         query.vehicleType = vehicleType;
       }
-
+  
+      // Fetch only address and vehicleType fields
       const availableSpots = await ParkingSpot.find(query);
-
+  
       if (!availableSpots.length) {
-        res.status(404).json({ message: "No available parking spots found." });
-        return;
+        return res.status(404).json({ message: "No available parking spots found." });
       }
-
+  
       res.status(200).json(availableSpots);
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Server error." });
     }
   }),
-
   updateParkingSpotAvailability: asyncHandler(
     async (req, res) => {
       try {
