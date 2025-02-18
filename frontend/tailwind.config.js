@@ -11,6 +11,9 @@ module.exports = {
         garamond:["EB Garamond", "serif"],
         luxurious:["Luxurious Roman","serif"]
 
+      },
+      fontSize: {
+        'xxs': '0.400rem' 
       }
     },
   },

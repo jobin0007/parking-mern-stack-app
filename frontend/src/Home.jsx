@@ -93,8 +93,8 @@ const Home = ({ setUser }) => {
   };
 
   return (
-    <div className="w-full mx-auto font-montserrat bg-gray-900 text-white shadow-md">
-      <div className="p-4">
+    <div className="w-full  p-4 mx-auto font-montserrat bg-gray-900 text-white shadow-md">
+      <div className="">
         <h2 className="text-xl font-semibold mb-3 text-center">
           Find Parking Spots
         </h2>
@@ -133,9 +133,9 @@ const Home = ({ setUser }) => {
         )}
 
       
-        {isSpotsLoading && <p className="mt-3 text-center">Loading spots...</p>}
+        {isSpotsLoading && <p className=" text-center">Loading spots...</p>}
 
-       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+       <ul className="grid grid-cols-2 sm:grid-cols-2   lg:grid-cols-3 gap-4 mt-7">
           {allSpots?.map((spot) => {
             const position = [
               spot.location.latitude || 0,
@@ -151,25 +151,28 @@ const Home = ({ setUser }) => {
                 className="p-3 border rounded bg-gray-900 flex flex-col justify-between h-auto"
               >
                 <div className="mb-3">
-                  <p className="font-semibold text-base mt-2">
+                  <p className="font-semibold text-[10px] sm:text-sm lg:text-lg   mt-2">
                     {spot.location.address}, {spot.location.city}
                   </p>
                 </div>
 
-                <p className="text-sm">Type: {spot.vehicleType}</p>
-                <p className="text-sm">
-                  First Hour: INR {spot.rate.firstHour} | Additional: INR{" "}
+                <p className="text-xxs sm:text-sm lg:text-sm ">Type: {spot.vehicleType}</p>
+                <p className="text-xxs sm:text-sm lg:text-sm">
+                  First Hour: INR {spot.rate.firstHour} 
+                </p>
+                <p className="text-xxs sm:text-sm lg:text-sm">
+                  Additional: INR{" "}
                   {spot.rate.additionalHour}
                 </p>
-                <p className="text-green-500 text-sm">Available</p>
+                <p className="text-green-500 text-xxs sm:text-sm lg:text-sm">Available</p>
 
                 {/* Aligning the link below the available status */}
-                <div className="mt-2">
+                <div className="mt-1">
                   <a
                     href={googleMapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-blue-500 text-white text-xs px-2 py-1 rounded w-full text-center"
+                    className="bg-blue-500 text-white text-xxs sm:text-sm lg:text-sm p-1 rounded w-full text-center"
                   >
                     View in Google Maps
                   </a>
@@ -178,7 +181,7 @@ const Home = ({ setUser }) => {
                 <div className="mt-3">
                   <button
                     onClick={() => handleParkClick(spot._id)}
-                    className="bg-green-600 hover:bg-green-700 text-white p-2 rounded w-full text-center"
+                    className="bg-green-600 hover:bg-green-700 text-white p-2 text-xxs sm:text-sm lg:text-sm rounded w-full text-center"
                   >
                     Park Here
                   </button>
